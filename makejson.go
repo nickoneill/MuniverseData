@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"fmt"
 	"strings"
+	"time"
 )
 
 type Config struct {
@@ -57,6 +58,7 @@ type MuniverseSchema struct {
 	StopList 	[]JsonStop
 	LineList 	[]JsonLine
 	SubwayList	[]JsonSubway
+	BuildDate	int64
 }
 
 type JsonLine struct {
@@ -321,6 +323,8 @@ func main() {
 	}
 
 	ms.SubwayList = subwayStops
+
+	ms.BuildDate = time.Now().Unix()
 
 	jsonbytes, err := json.Marshal(ms)
 	// jsonbytes, err := json.MarshalIndent(ms,"  ","  ")
